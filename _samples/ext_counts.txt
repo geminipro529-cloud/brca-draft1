@@ -1,0 +1,45 @@
+12103 .txt                      {data_clinical_patient.txt, data_clinical_sample.txt, data_cna.txt, data_gene_panel_matrix.txt...}   
+ 1492                           {QUALITATIVE, STRUCTURED, VOCAB, BRCA set...}                                                        
+  511 .csv                      {20231023_092657_imputed_drugresponse - Copy.csv, BRCA_ANOVA_Fri Aug  8 06_32_33 2025.csv, BRCA_Ge...
+  277 .seg                      {data_cna_hg19.seg, data_cna_hg38.seg, data_cna_hg38.seg, data_cna_hg38.seg...}                      
+  118 .yaml                     {.pre-commit-config.yaml, __schema.yaml, __system_fields.yaml, __schema.yaml...}                     
+  101 .md                       {README.md, README.md, README.md, README.md...}                                                      
+   79 .json                     {metadata.repository.2025-08-14.json, cancer-types.json, gene-panels.json, genes.json...}            
+   49 .html                     {acc_tcga_gdc-validation.html, alal_target_gdc-validation.html, aml_target_gdc-validation.html, am...
+   44 .pdf                      {al-sukhun-et-al-2024-systemic-treatment-of-patients-with-metastatic-breast-cancer-asco-resource-s...
+   25 .gz                       {nci-target-markers.txt.gz, nci-target-markers.txt.gz, nci-target-markers.txt.gz, nci-target-marke...
+   25 .tsv                      {brca_metabric_clinical_data.tsv, Protein_matrix_averaged_20250211.tsv, Protein_matrix_averaged_zs...
+   14 .py                       {create_dictionary.py, check_all_studies_imported.py, validate_changed_seed.py, update_cancer_type...
+   11 .sh                       {check_changed_seed.sh, install_dependencies.sh, validate_all_studies.sh, validate_changed_studies...
+    7 .yml                      {config.yml, stale.yml, test_cbioportaldata_import_study.yml, zip_all_studies.yml...}                
+    6 .pm                       {Vaf.pm, VafConstants.pm, AbstractVcf.pm, ReadVcf.pm...}                                             
+    6 .log                      {unconverted_hg18_hg19_seg.log, unconverted_hg18_hg19_seg.log, unconverted_hg18_hg19_seg.log, unco...
+    6 .xlsx                     {Cell_Lines_Details.xlsx, fda_approved_oncology_therapies.xlsx, GDSC2_fitted_dose_response_27Oct23...
+    5 .tbi                      {seq.cov5.ONHG19_sorted.bed.gz.tbi, samplea.caveman_c.annot.vcf.gz.tbi, samplea.pindel.annot.vcf.g...
+    4 .t                        {1_pm_compile.t, 2_pl_compile.t, vaf_bam.t, vaf_cram.t}                                              
+    3 .cram                     {samplea.cram, sampleb.cram, samplec.cram}                                                           
+    3 .bam                      {samplea.bam, sampleb.bam, samplec.bam}                                                              
+    3 .bai                      {samplea.bam.bai, sampleb.bam.bai, samplec.bam.bai}                                                  
+    3 .crai                     {samplea.cram.crai, sampleb.cram.crai, samplec.cram.crai}                                            
+    3 .gitignore                {.gitignore, .gitignore, .gitignore}                                                                 
+    3 .sam                      {samplea.sam, sampleb.sam, samplec.sam}                                                              
+    3 .2025-08-07               {biospecimen.project-tcga-brca.2025-08-07, GDCbiospecimen.project-tcga-brca.2025-08-07, GDCclinica...
+    2 .pl                       {Makefile.PL, cgpVaf.pl}                                                                             
+    2 .htm                      {cBioPortal_validation_report_cesc_tcga.htm, cBioPortal_validation_report_lgg_tcga.htm}              
+    2 .gaf                      {goa_human.gaf, goa_human.gaf}                                                                       
+    1 .bat                      {cpt.bat}                                                                                            
+    1 .jar                      {cpt4.jar}                                                                                           
+    1 .fai                      {genome.fa.fai}                                                                                      
+    1 .bed                      {test.bed}                                                                                           
+    1 .maf                      {OmicsSomaticMutationsMAFProfile.maf}                                                                
+    1 .gct                      {CCLE_RNAseq_genes_rpkm_20180929.gct}                                                                
+    1 .baseline                 {.secrets.baseline}                                                                                  
+    1 .gitattributes            {.gitattributes}                                                                                     
+    1 .github                   {.github}                                                                                            
+    1 .circleci                 {.circleci}                                                                                          
+    1 .dockerignore             {.dockerignore}                                                                                      
+    1 .diff                     {exonerate_pthread-asneeded.diff}                                                                    
+    1 .conf                     {log4perl.vaf.conf}                                                                                  
+    1 .in                       {MANIFEST.in}                                                                                        
+    1 .toml                     {pyproject.toml}                                                                                     
+    1 .ini                      {tox.ini}

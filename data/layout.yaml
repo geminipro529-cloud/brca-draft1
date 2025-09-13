@@ -1,0 +1,34 @@
+# data/layout.yaml
+# Target schema (minimal, BRCA-first). Keep folders few, semantics high.
+version: 1
+raw_root: "data/01_raw"
+
+scopes: ["BRCA", "NANOMEDICINE", "GENERIC"]
+special_folders:
+  inbox: "_INBOX"
+  quarantine: "_QUARANTINE"
+
+buckets:
+  OMICS:
+    rnaseq:         ["parquet","csv","tsv","gct","txt","gz","fastq","fq","bam","cram","sra"]
+    genomics:       ["maf","vcf","vcf.gz","bed","gff","gtf","seg","txt","tsv","csv"]
+    proteomics:     ["mzml","raw","csv","tsv","parquet"]
+    methylation:    ["idat","csv","tsv","parquet","rds"]
+    metabolomics:   ["csv","tsv","parquet","mzml"]
+    singlecell:     ["h5ad","loom","rds","mtx","tsv","csv","parquet"]
+    exosomes:       ["csv","tsv","parquet","xlsx","xls"]
+  IMAGING:
+    _flat:          ["dcm","dicom","svs","tif","tiff","ndpi","png","jpg","jpeg","bmp"]
+  CLINICAL:
+    _flat:          ["csv","tsv","parquet","xlsx","xls","json"]
+  DOCS:
+    _flat:          ["pdf"]
+
+noisy_extensions: ["part","php","cgi","jsp","aspx","html","htm"]
+noisy_names_like: ["index","download","query","search","view"]
+
+# Minimal rule hints (used only for warnings; arrangement can be separate)
+hints:
+  brca_keywords: ["brca","breast","metabric","tcga-brca","cptac-brca"]
+  rnaseq_like:   ["rnaseq","rna_seq","fpkm","tpm","htseq","counts"]
+  nano_like:     ["nano","nanoparticle","liposome","micelle","cananolab","euon","vesicle","exosome"]

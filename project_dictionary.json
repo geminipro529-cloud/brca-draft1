@@ -1,0 +1,479 @@
+{
+    "FILE_PARSERS": "This makes the script easy to extend for new file types.",
+    "OUTPUT_FILENAME": "2. Set the name of the final output file.",
+    "SEARCH_DIRECTORY": "'.' means the current directory where the script is located.",
+    "_check_enum()": "Function: Check the collected enums Args: enums (dict of str: list[str]): mapping from the path to the enum to the enum object Returns: dict: mapping from the violations and the corresponding path (and item name if necessary)",
+    "_generate_error_message_for_enum()": "Function: Generate error message string for enum checks Args: res_dict (dict of string: string): mapping from the violation to the list of enum path Returns: str: the formatted error message",
+    "_parse_keys_from_error_message()": "Function: A single schema violation representation. Properties: schema: the name of the json schema e.g. aliquot message: the error message describing the violation keys: the list of keys whose constraints were violated.",
+    "a260_a280_ratio": 1,
+    "aa_change": "FJRs1d6C2z",
+    "adapter_content": "PASS",
+    "adapter_sequence": "GCCAAT",
+    "add()": "Function: passes if no exception is raised",
+    "adverse_event": "Amnesia",
+    "age_at_diagnosis": 47,
+    "age_at_index": 89,
+    "age_is_obfuscated": true,
+    "aids_risk_factors": "Toxoplasmosis",
+    "ajcc_staging_system_edition": "1st",
+    "alcohol_history": "Yes",
+    "alcohol_intensity": "Drinker",
+    "alias": "abc",
+    "aligned_reads_files": {
+        "submitter_id": "GDC_generated_bam_#"
+    },
+    "alignment_cocleaning_workflows": {
+        "submitter_id": "Jeremiah's_super_secret_pipeline_v423"
+    },
+    "aliquot_quantity": 0.4,
+    "aliquot_volume": 5,
+    "aliquots": {
+        "submitter_id": "aliquot_a"
+    },
+    "amount": 10.98,
+    "analyte_quantity": 10,
+    "analyte_type": "DNA",
+    "analyte_volume": 0.4,
+    "analytes": {
+        "submitter_id": "BLGSP-71-06-00019-99A-01D"
+    },
+    "ann_arbor_b_symptoms": "Yes",
+    "ann_arbor_extranodal_involvement": "No",
+    "annotated_somatic_mutations": {
+        "submitter_id": "annotated_somatic_output_212"
+    },
+    "antigen": "CA19-9",
+    "awg_review": false,
+    "barretts_esophagus_goblet_cells_present": "No",
+    "basic_statistics": "PASS",
+    "best_overall_response": "IMR-Immunoresponse",
+    "biospecimen_anatomic_site": "Adipose",
+    "biospecimen_laterality": "Right",
+    "blood_test_normal_range_lower": 73.298581,
+    "blood_test_normal_range_upper": 98.050881,
+    "bmi": 10,
+    "body_surface_area": 15,
+    "burkitt_lymphoma_clinical_variant": "Endemic",
+    "cases": {
+        "submitter_id": "BLGSP-71-06-00019"
+    },
+    "catalog_reference": "1234a",
+    "category": "Observation",
+    "cause_of_death": "Cancer Related",
+    "cause_of_death_source": "Autopsy",
+    "cause_of_response": "First Line of Therapy",
+    "cd4_count": 10,
+    "cdc_hiv_risk_factors": "None",
+    "cell_count": 35,
+    "channel": "Green",
+    "check_cancer_type_table()": "Function: Check whether the cancer types table contains values.",
+    "check_changed_seed()": "Function: Check whether the seed database files are changed",
+    "check_gene_alias_table()": "Function: Check whether the gene alias table contains values.",
+    "check_gene_symbols_unique()": "Function: Check whether the gene symbols are unique.",
+    "check_gene_table()": "Function: Check whether the seed database contains values.",
+    "check_info_table()": "Function: Check whether the info table contains 2 values",
+    "check_number_of_studies()": "Function: Check whether the number of studies is equal to zero.",
+    "child_pugh_classification": "C12",
+    "chromosome": "chr11",
+    "cigarettes_per_day": 1.0,
+    "classification_of_tumor": "other",
+    "code": "BLGSP",
+    "cog_liver_stage": "Stage II",
+    "cog_neuroblastoma_risk_group": "Not Reported",
+    "cog_renal_stage": "Stage IV",
+    "cog_rhabdomyosarcoma_risk_group": "Unknown",
+    "comorbidities": [
+        "COPD"
+    ],
+    "comorbidity_method_of_diagnosis": "Histology",
+    "concentration": 0.14,
+    "contamination": 1,
+    "contamination_error": 0.3,
+    "copy_number": 10.422186,
+    "copy_number_liftover_workflows": {
+        "submitter_id": "cn_liftover_run_23"
+    },
+    "copy_number_segments": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "copy_number_variation_workflows": {
+        "submitter_id": "variation_workflow_run_#"
+    },
+    "created_datetime": "2015-11-17T14:13:16.931431-06:00",
+    "creation_datetime": 1359936000,
+    "creator": "test_script",
+    "current_weight": 1,
+    "cytoband": "nMiKs0aNCyLU3Ro",
+    "data_category": "Sequencing Reads",
+    "data_format": "BAM",
+    "data_type": "Aligned Reads",
+    "days_to_adverse_event": 23,
+    "days_to_best_overall_response": 12512,
+    "days_to_birth": -12414,
+    "days_to_collection": 25,
+    "days_to_comorbidity": -340,
+    "days_to_death": 1241,
+    "days_to_diagnosis": 0,
+    "days_to_follow_up": 100,
+    "days_to_last_follow_up": -1.0,
+    "days_to_last_known_disease_status": -1,
+    "days_to_lost_to_followup": 125,
+    "days_to_progression": 80,
+    "days_to_progression_free": 99,
+    "days_to_recurrence": 99,
+    "days_to_sample_procurement": 123,
+    "days_to_sequencing": 6,
+    "days_to_treatment_end": 14,
+    "days_to_treatment_start": 25,
+    "dbgap_accession_number": "phs000527",
+    "derived_from": {
+        "id": [
+            "e58e1f64-d733-405f-95f1-ede1628c81e7"
+        ]
+    },
+    "diabetes_treatment_type": "Insulin",
+    "diagnoses": {
+        "submitter_id": "E9EDB78B-6897-4205-B9AA-0CEF8AAB5A1F_diagnosis"
+    },
+    "diagnosis_is_primary_disease": true,
+    "diagnosis_pathologically_confirmed": "Yes",
+    "disease_response": "MX-Mixed Response",
+    "disease_type": "Burkitt Lymphoma",
+    "distance_normal_to_tumor": "Unknown",
+    "distributor_reference": "IDK101",
+    "dlco_ref_predictive_percent": 1.21,
+    "ecog_performance_status": "0",
+    "encoding": "Sanger / Illumina 1.9",
+    "enneking_msts_grade": "Not Reported",
+    "enneking_msts_metastasis": "Regional or Distant Metastasis (M1)",
+    "enneking_msts_stage": "Stage IIB",
+    "enneking_msts_tumor_site": "Not Reported",
+    "environmental_tobacco_smoke_exposure": "No",
+    "eprint()": "Function: Print error message and exit",
+    "esophageal_columnar_dysplasia_degree": "Unknown",
+    "esophageal_columnar_metaplasia_present": "Unknown",
+    "ethnicity": "not hispanic or latino",
+    "exon": "37a",
+    "experiment_name": "Resequencing",
+    "experimental_strategy": "WXS",
+    "expression_analysis_workflows": {
+        "submitter_id": "expression_analysis_test200"
+    },
+    "eye_color": "Amber",
+    "fastq_name": "2893341596_1.fq.gz",
+    "fev1_fvc_post_bronch_percent": 34.54,
+    "fev1_fvc_pre_bronch_percent": 33.3,
+    "fev1_ref_post_bronch_percent": 0.1,
+    "fev1_ref_pre_bronch_percent": 1.23,
+    "file_name": "C317.TCGA-AB-2837-03B-01W-0728-08.3.bam",
+    "file_size": 28165335141,
+    "first_symptom_prior_to_diagnosis": "Sensory Changes",
+    "flatten_oncotree()": "Function: Recursive function to flatten the JSON formatted cancer types",
+    "flow_cell_barcode": "205DDABXX",
+    "follow_ups": {
+        "submitter_id": "visit_1"
+    },
+    "fragment_maximum_length": 250,
+    "fragment_mean_length": 150.5,
+    "fragment_minimum_length": 100,
+    "fragment_standard_deviation_length": 20.3,
+    "freezing_method": "OCT",
+    "gastric_esophageal_junction_involvement": "No",
+    "gender": "female",
+    "gene_expressions": {
+        "submitter_id": "gene_expression_test300"
+    },
+    "gene_symbol": "FGFR3",
+    "genomic_profile_harmonization_workflows": {
+        "submitter_id": "fmi_pipeline_v213"
+    },
+    "germline_mutation_calling_workflows": {
+        "submitter_id": "Shenglai's_super_secret_pipeline_v#"
+    },
+    "get_portal_properties()": "Function: Retrieve database settings from portal.properties",
+    "get_schema_directory()": "Function: Creates a new dictionary instance. :param root_dir: The directory to find schemas :param metaschema_path: The metaschema to validate schemas with :param definitions_paths: Paths to resolve $ref to :param lazy: If true, wait to load dictionary",
+    "gleason_grade_group": "Group 5",
+    "goblet_cells_columnar_mucosa_present": "Yes",
+    "growth_rate": 1,
+    "haart_treatment_indicator": "Yes",
+    "height": 162,
+    "hepatitis_sustained_virological_response": "No",
+    "histone_family": "H2A",
+    "histone_variant": "H3.1",
+    "hormonal_contraceptive_type": "Unknown",
+    "hormonal_contraceptive_use": "Unknown",
+    "hysterectomy_margins_involved": "Bladder",
+    "hysterectomy_type": "Simple Hysterectomy",
+    "icd_10_code": "C439",
+    "id": "0cb66276-c29b-4811-a704-38502173c0f8",
+    "igcccg_stage": "Good Prognosis",
+    "immunosuppressive_treatment_type": "None",
+    "index_date": "Diagnosis",
+    "initial_disease_status": "Unknown",
+    "initial_weight": 0.5,
+    "inpc_grade": "Undifferentiated",
+    "inpc_histologic_group": "Favorable",
+    "inrg_stage": "L1",
+    "insert_cancer_types()": "Function: Insert cancer types in cBioPortal database",
+    "inss_stage": "Stage 2A",
+    "instrument_model": "Illumina HiSeq 2000",
+    "intermediate_dimension": 1.2,
+    "international_prognostic_index": "Low Risk",
+    "intron": "12a",
+    "irs_group": "Group IIIb",
+    "irs_stage": "2",
+    "is_ffpe": false,
+    "is_legacy": false,
+    "is_paired_end": true,
+    "ishak_fibrosis_score": "1,2 - Portal Fibrosis",
+    "iss_stage": "I",
+    "karnofsky_performance_status": "10",
+    "kmer_content": "PASS",
+    "lane_number": 4,
+    "last_known_disease_status": "Unknown tumor status",
+    "library_name": "Solexa-34688",
+    "library_selection": "Hybrid Selection",
+    "library_strategy": "WXS",
+    "load_yaml()": "Function: Resolves a reference. :param value: The actual reference, e.g. ``_yaml.yaml#/def`` :param root: The containing root of :param:`value`. This needs to be passed in order to resolve self-referential $refs, e.g. ``#/def``. :returns: JSON Schema pointed to by :param:`value`",
+    "loci_abnormal_count": 6,
+    "loci_count": 76,
+    "locus": "NC_002516.1",
+    "longest_dimension": 1.5,
+    "lost_to_followup": "Yes",
+    "masaoka_stage": "Stage IVa",
+    "md5sum": "d3266f2577584713ea17f94d331f30c4",
+    "medulloblastoma_molecular_classification": "Unknown",
+    "member_of": [
+        {
+            "id": "e58e1f64-d733-405f-95f1-ede1628c81e7"
+        },
+        {
+            "id": "511bf8e8-ae71-4cb9-bb1b-4e58d04d12c1"
+        }
+    ],
+    "menopause_status": "Not Reported",
+    "metastasis_at_diagnosis": "Distant Metastasis",
+    "method_of_diagnosis": "Cytology",
+    "method_of_sample_procurement": "Indeterminate",
+    "methylation_array_harmonization_workflows": {
+        "submitter_id": "methylation_array_harmonization_workflow1"
+    },
+    "methylation_liftover_workflows": {
+        "submitter_id": "liftover_workflow_a"
+    },
+    "mirna_expression_workflows": {
+        "submitter_id": "mirna_profiling_output#"
+    },
+    "mismatch_repair_mutation": "No",
+    "mitosis_karyorrhexis_index": "Not Reported",
+    "molecular_analysis_method": "Not Reported",
+    "molecular_consequence": "Splice Region Variant",
+    "morphology": "8255/3",
+    "msi_score": 1.2,
+    "msi_status": "MSS",
+    "multiplex_barcode": "TCTC12GGTC+GAAGTG1234GA",
+    "nadir_cd4_count": 0,
+    "name": "Burkitt Lymphoma Genome Sequencing Project",
+    "normal_tumor_genotype_snp_match": "Yes",
+    "notes": "This sample is only a test sample!",
+    "occupation_duration_years": 4,
+    "ovarian_specimen_status": "Ovarian Capsule Ruptured",
+    "ovarian_surface_involvement": "Absent",
+    "overrepresented_sequences": "PASS",
+    "pancreatitis_onset_year": 1974,
+    "parent_samples": {
+        "submitter_id": "BLGSP-71-06-00019.0"
+    },
+    "parse_cancer_types_json()": "Function: Parse JSON formatted cancer types received from OncoTree API",
+    "parse_translation_file()": "Function: Saves the final dictionary to a formatted JSON file.",
+    "passage_count": 0,
+    "pathogenicity": "Benign",
+    "pathology_report_uuid": "74f94908-2f42-4ae6-82c2-579cd22c3255",
+    "per_base_n_content": "PASS",
+    "per_base_sequence_content": "WARN",
+    "per_base_sequence_quality": "PASS",
+    "per_sequence_gc_content": "WARN",
+    "per_sequence_quality_score": "PASS",
+    "per_tile_sequence_quality": "PASS",
+    "percent_gc_content": 39,
+    "percent_lymphocyte_infiltration": 0.0,
+    "percent_monocyte_infiltration": 0.0,
+    "percent_necrosis": 0.0,
+    "percent_neutrophil_infiltration": 0.0,
+    "percent_normal_cells": 0.0,
+    "percent_stromal_cells": 20.0,
+    "percent_tumor_cells": 80.0,
+    "percent_tumor_nuclei": 80.0,
+    "peritoneal_fluid_cytological_status": "Atypical",
+    "platform": "Illumina Human Methylation 450",
+    "ploidy": "Unknown",
+    "portion_number": "01",
+    "portions": [
+        {
+            "submitter_id": "TCGA-FW-A3R5-06A-11"
+        }
+    ],
+    "pregnancy_outcome": "Not Reported",
+    "preservation_method": "Frozen",
+    "primary_diagnosis": "Hepatosplenic gamma-delta cell lymphoma",
+    "primary_gleason_grade": "Pattern 3",
+    "primary_site": "Lymph Nodes",
+    "prior_malignancy": "no",
+    "programs": [
+        {
+            "name": "CGCI"
+        }
+    ],
+    "progression_or_recurrence": "Yes",
+    "progression_or_recurrence_anatomic_site": "Ampulla of Vater",
+    "progression_or_recurrence_type": "Distant",
+    "projects": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "race": "white",
+    "raw_methylation_arrays": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "read_group_name": "205DD.3",
+    "read_groups": {
+        "submitter_id": "205CTABXX100806.5.C317.TCGA-AB-2837-03B-01W-0728-08.3.bam"
+    },
+    "read_length": 75,
+    "read_pair_number": "R1",
+    "reflux_treatment_type": "Medically Treated",
+    "regimen_or_line_of_therapy": "First Line of Therapy",
+    "relationship_age_at_diagnosis": 12,
+    "relationship_gender": "unspecified",
+    "relationship_primary_diagnosis": "Cancer",
+    "relationship_type": "Cousin",
+    "relative_with_cancer_history": "yes",
+    "relatives_with_cancer_history_count": 4,
+    "release_requested": true,
+    "resolve_local_refs()": "Function: Converts a string ref to list of refs & resolves the references",
+    "resolve_schema()": "Function: Recursively resolves all references in a schema against ``self.resolvers``. :param obj: The object to recursively resolve. :param root: The containing root of :param:`value`. This needs to be passed in order to resolve self-referential $refs, e.g. ``#/def``. :returns: A denormalized/resolved version of :param:`obj`.",
+    "retrieve_oncotree_cancer_types()": "Function: Retrieve cancer types from OncoTree API",
+    "ribosomal_rna_28s_16s_ratio": 1,
+    "risk_factor_treatment": "Yes",
+    "risk_factors": [
+        "Obesity"
+    ],
+    "rna_expression_workflows": {
+        "submitter_id": "rna_profiling_output#"
+    },
+    "sample_ordinal": 1,
+    "sample_type": "Blood Derived Normal",
+    "samples": {
+        "submitter_id": "samplex"
+    },
+    "second_exon": "1z",
+    "second_gene_symbol": "BTG1",
+    "secondary_gleason_grade": "Pattern 2",
+    "section_location": "TOP",
+    "selected_normal_low_pass_wgs": false,
+    "selected_normal_targeted_sequencing": true,
+    "selected_normal_wgs": false,
+    "selected_normal_wxs": true,
+    "sequence_duplication_levels": "PASS",
+    "sequence_length_distribution": "PASS",
+    "sequencing_center": "BI",
+    "sequencing_date": "2010-08-04",
+    "sex_at_birth": "female",
+    "shortest_dimension": 0.5,
+    "simple_somatic_mutations": {
+        "submitter_id": "MuTect_2_output_212"
+    },
+    "site_of_resection_or_biopsy": "Middle ear",
+    "slides": {
+        "submitter_id": "slide_X"
+    },
+    "smoking_frequency": "Some days",
+    "somatic_aggregation_workflows": {
+        "submitter_id": "MuTect2_run_100"
+    },
+    "somatic_annotation_workflows": {
+        "submitter_id": "Kyles_super_secret_pipeline_v213"
+    },
+    "somatic_mutation_calling_workflows": {
+        "submitter_id": "Stuti's_super_secret_pipeline_v213"
+    },
+    "source_center": "23",
+    "specialized_molecular_test": "OMcU8xEjBPS8k",
+    "specimen_type": "Solid Tissue",
+    "spectrophotometer_method": "PicoGreen",
+    "start_mysql_database()": "Function: Start a mysql database with the seed files",
+    "state": "open",
+    "state_comment": "",
+    "status": "Rescinded",
+    "submitted_aligned_reads_files": {
+        "submitter_id": "bam_file_a"
+    },
+    "submitted_genomic_profiles": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "submitted_genotyping_arrays": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "submitted_methylation_beta_values": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "submitted_tangent_copy_numbers": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "submitted_unaligned_reads_files": {
+        "id": "0cb66276-c29b-4811-a704-38502173c0f8"
+    },
+    "submitter_id": "E9EDB78B-6897-4205-B9AA-0CEF8AAB5A1F_treatment",
+    "supratentorial_localization": "Deep Gray (e.g. Basal Ganglia, Thalamus)",
+    "synchronous_malignancy": "Yes",
+    "target_capture_kit": "SureSelect Human All Exon v5",
+    "test_acyclicalty_without_ignored_types()": "Function: Confirm the dictionary has cycles involving the expected type(s). If the acyclicality check passes like this, either the algorithm is missing something or we're ignoring types that we shouldn't.",
+    "test_analyte_type": "Not Reported",
+    "test_check_for_cycles_negative()": "Function: Test the cycle detection logic with a synthetic negative case.",
+    "test_check_for_cycles_positive()": "Function: Test the cycle detection logic with a synthetic positive case.",
+    "test_links_to_annotation()": "Function: Test integer min is less than max Given a node schema When a node property is Integer Then the minimum shoould be smaller than the maximum",
+    "test_no_missing_type_array()": "Function: Test no missing type array. Given a node schema, When a node property has items. Then the property type should be `array`.",
+    "test_properties_enum()": "Function: Check the enums of node properties",
+    "test_result": "Not Reported",
+    "test_schemas()": "Function: Confirm the dictionary has no (unexpected) cycles.",
+    "test_units": "Not Reported",
+    "test_value": 0.615252,
+    "therapeutic_agents": "10-Deacetyltaxol",
+    "time_between_clamping_and_freezing": 30.0,
+    "time_between_excision_and_freezing": 15.0,
+    "time_between_waking_and_first_smoke": "Within 5 Minutes",
+    "tissue_collection_type": "Retrospective",
+    "tissue_or_organ_of_origin": "Bone marrow",
+    "tissue_type": "Normal",
+    "tobacco_smoking_onset_year": 1955,
+    "tobacco_smoking_quit_year": 1999,
+    "tobacco_smoking_status": "1",
+    "total_sequences": 195523357,
+    "transcript": "ENST01232151212.12",
+    "treatment_effect": "No Necrosis",
+    "treatment_intent_type": "Cure",
+    "treatment_or_therapy": "unknown",
+    "treatment_type": "Other",
+    "tumor_code_id": "00",
+    "tumor_confined_to_organ_of_origin": "Unknown",
+    "tumor_descriptor": "NOS",
+    "tumor_focality": "Multifocal",
+    "tumor_grade": "GX",
+    "tumor_regression_grade": "2",
+    "type": "treatment",
+    "type_of_smoke_exposure": "Volcanic smoke",
+    "type_of_tobacco_used": "Pipe",
+    "variant_origin": "Germline",
+    "variant_type": "Repeated Sequences",
+    "vital_status": "Dead",
+    "weight": 2.0,
+    "weiss_assessment_score": "3",
+    "well_number": "4",
+    "wilms_tumor_histologic_subtype": "Favorable",
+    "workflow_link": "github.com/<owner>/<project>/commit/<hash>",
+    "workflow_type": "MuSE Annotation",
+    "workflow_version": "v1.0",
+    "year_of_birth": 1900,
+    "year_of_death": 2050,
+    "year_of_diagnosis": 2050,
+    "zygosity": "Heterozygous"
+}

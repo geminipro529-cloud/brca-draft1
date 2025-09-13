@@ -1,0 +1,5 @@
+raw_dirs:
+- D:\breast_cancer_project_root\structured
+unstructured_in: null
+rna_seq: true
+vocab_parquet: null

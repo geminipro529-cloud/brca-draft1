@@ -1,0 +1,23 @@
+path,rel_path,ext,size_bytes,size_h,encoding_guess,is_codebook_name,is_numeric_whale,has_header_ids,has_value_ids
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\proteomics_all_20250211.csv,proteomics_all_20250211.csv,.csv,313135936,298.6MB,ascii,0,0,0,1
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\proteomics_all_20250211.parquet,proteomics_all_20250211.parquet,.parquet,77025432,73.5MB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\WES_pureCN_CNV_segments_20221214.csv,WES_pureCN_CNV_segments_20221214.csv,.csv,70080613,66.8MB,ascii,0,0,0,1
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\20231023_092657_imputed_drugresponse - Copy.csv,20231023_092657_imputed_drugresponse - Copy.csv,.csv,15217921,14.5MB,ascii,0,0,0,1
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\WES_pureCN_CNV_segments_20221214.parquet,WES_pureCN_CNV_segments_20221214.parquet,.parquet,10248907,9.8MB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\20231023_092657_imputed_drugresponse - Copy.parquet,20231023_092657_imputed_drugresponse - Copy.parquet,.parquet,8431160,8.0MB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\BRCA_ANOVA_Fri Aug  8 06_32_33 2025.csv,BRCA_ANOVA_Fri Aug  8 06_32_33 2025.csv,.csv,4468282,4.3MB,ascii,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\BRCA_IC_Fri Aug  8 06_33_45 2025.csv,BRCA_IC_Fri Aug  8 06_33_45 2025.csv,.csv,2762974,2.6MB,ascii,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\driver_mutations_20221208.csv,driver_mutations_20221208.csv,.csv,2365266,2.3MB,ascii,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\BRCA_Genetic_features_Fri Aug  8 06_37_05 2025.csv,BRCA_Genetic_features_Fri Aug  8 06_37_05 2025.csv,.csv,1735408,1.7MB,ascii,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\model_list_20250630.csv,model_list_20250630.csv,.csv,1288233,1.2MB,utf-8,0,0,0,1
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\BRCA_ANOVA_Fri Aug  8 06_32_33 2025.parquet,BRCA_ANOVA_Fri Aug  8 06_32_33 2025.parquet,.parquet,887151,866.4KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\BRCA_IC_Fri Aug  8 06_33_45 2025.parquet,BRCA_IC_Fri Aug  8 06_33_45 2025.parquet,.parquet,416194,406.4KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\depmap_export_2025-08-08 05_47_16.563387_subsetted (1).csv,depmap_export_2025-08-08 05_47_16.563387_subsetted (1).csv,.csv,355768,347.4KB,ascii,0,0,0,1
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\model_list_20250630.parquet,model_list_20250630.parquet,.parquet,254493,248.5KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\driver_mutations_20221208.parquet,driver_mutations_20221208.parquet,.parquet,240869,235.2KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\depmap_export_2025-08-08 05_47_16.563387_subsetted (1).parquet,depmap_export_2025-08-08 05_47_16.563387_subsetted (1).parquet,.parquet,51332,50.1KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\growth_rate_20220907.csv,growth_rate_20220907.csv,.csv,48214,47.1KB,ascii,0,0,0,1
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\BRCA_Genetic_features_Fri Aug  8 06_37_05 2025.parquet,BRCA_Genetic_features_Fri Aug  8 06_37_05 2025.parquet,.parquet,23158,22.6KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\growth_rate_20220907.parquet,growth_rate_20220907.parquet,.parquet,20474,20.0KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\manifest.parquet,manifest.parquet,.parquet,8979,8.8KB,,0,0,0,0
+D:\breast_cancer_project_root\data\02_interim\structured_annotated\manifest.csv,manifest.csv,.csv,1588,1.6KB,ascii,0,0,0,0

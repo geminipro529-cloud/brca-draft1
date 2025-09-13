@@ -1,0 +1,3 @@
+extension,count,total_bytes,total_size
+.csv,11,411460203,392.4MB
+.parquet,11,97608149,93.1MB

@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Data Folders - CRITICAL
+0*_*
+forensic_logs/
+debug_logs/
+CULPRITS/
+
+# Logs and Reports
+logs/
+reports/
+
+# IDE files
+.vscode/
