@@ -11,7 +11,7 @@ import logging
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, BarColumn, TextColumn, TimeElapsedColumn, MofNCompleteColumn, SpinnerColumn
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 # --- Setup ---
 console = Console()

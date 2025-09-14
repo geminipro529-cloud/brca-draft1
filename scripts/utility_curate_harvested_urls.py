@@ -9,7 +9,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from rich.console import Console
 from rich.panel import Panel
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 console = Console()
 

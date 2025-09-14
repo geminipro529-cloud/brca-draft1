@@ -15,7 +15,7 @@ try:
     if not Path("run_pipeline.py").exists():
         raise ImportError
 
-    import compass_brca.pipeline_config as cfg
+    import compass_brca.utils.pipeline_config as cfg
     from run_pipeline import PIPELINE_STEPS
 except ImportError:
     print("\n[bold red]ERROR:[/bold red] This script must be run from the project root directory (the one containing 'run_pipeline.py').")

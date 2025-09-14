@@ -2,7 +2,7 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 from rich.progress import tracks
 
 def main():

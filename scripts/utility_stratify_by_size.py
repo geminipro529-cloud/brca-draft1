@@ -8,7 +8,7 @@ from rich.panel import Panel
 
 console = Console()
 try:
-    from compass_brca.pipeline_config import INTERIM_DATA_DIR, PRIMARY_DATA_DIR
+    from compass_brca.utils.pipeline_config import INTERIM_DATA_DIR, PRIMARY_DATA_DIR
 except ImportError:
     console.print("Failed to import from pipeline_config. Using script defaults.")
     INTERIM_DATA_DIR = Path("02_data_interim")

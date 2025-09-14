@@ -22,7 +22,7 @@ from rich.progress import (
     SpinnerColumn,
     TaskProgressColumn,
 )
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 # --- Setup ---
 console = Console()

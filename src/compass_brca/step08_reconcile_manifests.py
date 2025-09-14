@@ -1,7 +1,7 @@
 # scripts/step08_reconcile_manifests.py
 import pandas as pd
 from pathlib import Path
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 def main():
     if not cfg.MASTER_MANIFEST.exists():

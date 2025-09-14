@@ -14,7 +14,7 @@ from rich.table import Table
 
 # --- Configuration ---
 try:
-    from compass_brca.pipeline_config import PRIMARY_DATA_DIR
+    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR
 except ImportError:
     # ... (error handling)
     sys.exit(1)

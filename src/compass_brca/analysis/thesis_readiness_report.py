@@ -86,9 +86,14 @@ def main():
     report_lines.append("## 2. Data Linkage Analysis\n")
     report_lines.append("This analysis checks for files that contain terms from multiple domains, which is essential for finding correlations.\n")
     
-    # Find files that contain at least one nanoparticle term
-    nano_files = crosswalk_df.filter(pl.col("identifier_value").is_in(vocab_data.get("nanoparticle", [])))["source_file"].unique().to_list()
-    
+    # Check if nanoparticle vocabulary is loaded before proceeding
+    if "nanoparticle" not in vocab_data:
+        console.print("[yellow]Warning:[/yellow] Nanoparticle vocabulary not found. Skipping linkage analysis.")
+        report_lines.append("- **SKIPPED:** Nanoparticle vocabulary not found. Linkage analysis could not be performed.")
+        nano_files = []
+    else:
+        # Find files that contain at least one nanoparticle term
+        nano_files = crosswalk_df.filter(pl.col("identifier_value").is_in(vocab_data.get("nanoparticle", [])))["source_file"].unique().to_list()
     if not nano_files:
         console.print("[red]Critical Finding:[/red] No files containing nanoparticle terms were found. Linkage analysis cannot proceed.")
         report_lines.append("- **CRITICAL:** No files with nanoparticle terms found.")

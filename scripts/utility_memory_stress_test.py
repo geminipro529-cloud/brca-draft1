@@ -10,7 +10,7 @@ from pathlib import Path
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, BarColumn, TextColumn, TimeElapsedColumn, MofNCompleteColumn
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 console = Console()
 PROGRESS_LOG = cfg.INTERIM_DATA_DIR / "_stresstest_progress.log.csv"

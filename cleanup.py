@@ -1,7 +1,7 @@
 # cleanup.py
 import argparse, shutil
 from rich.console import Console
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 console = Console()
 DIRS = {

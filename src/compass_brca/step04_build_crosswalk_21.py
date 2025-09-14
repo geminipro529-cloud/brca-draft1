@@ -14,7 +14,7 @@ from dask.distributed import Client, LocalCluster, wait, get_worker
 
 console = Console()
 try:
-    from compass_brca.pipeline_config import PRIMARY_DATA_DIR
+    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR
 except ImportError:
     # ... (error handling)
     sys.exit(1)
@@ -25,7 +25,7 @@ FORENSIC_LOGS_DIR = PROJECT_ROOT / "forensic_logs"
 
 # --- Use robust, package-based imports ---
 try:
-    from compass_brca.pipeline_config import PRIMARY_DATA_DIR, MASTER_CROSSWALK_FILENAME
+    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR, MASTER_CROSSWALK_FILENAME
 except ImportError as e:
     console.print(f"[bold red]Fatal Error: Could not import pipeline_config.py.[/]")
     console.print(f"[dim]Python Error: {e}[/dim]")

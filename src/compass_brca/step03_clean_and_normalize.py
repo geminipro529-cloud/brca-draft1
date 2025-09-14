@@ -12,7 +12,7 @@ import re
 
 console = Console()
 try:
-    from compass_brca.pipeline_config import RAW_DATA_DIR, CHUNKED_DIR, INTERIM_DATA_DIR
+    from compass_brca.utils.pipeline_config import RAW_DATA_DIR, CHUNKED_DIR, INTERIM_DATA_DIR
 except ImportError:
     # ... (fallback)
     sys.exit(1)

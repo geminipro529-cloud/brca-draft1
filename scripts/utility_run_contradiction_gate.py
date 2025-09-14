@@ -15,7 +15,7 @@ from rich.prompt import Prompt, Confirm
 # Attempt to get the project root to save the log in the right place
 try:
     sys.path.append(str(Path(__file__).resolve().parents[1]))
-    from compass_brca.pipeline_config import PROJECT_ROOT
+    from compass_brca.utils.pipeline_config import PROJECT_ROOT
     LOGS_DIR = PROJECT_ROOT / "logs"
 except ImportError:
     # Fallback if run before project is fully set up

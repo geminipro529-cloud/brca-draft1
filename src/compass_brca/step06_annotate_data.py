@@ -6,7 +6,7 @@ import pandas as pd
 import argparse # <-- Added
 from pathlib import Path # <-- Added
 from rich.progress import track
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 def main():
     # --- NEW: Argument Parsing ---

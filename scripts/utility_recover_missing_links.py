@@ -122,10 +122,10 @@ def main():
 if __name__ == "__main__":
     # This check is necessary to prevent circular import issues when running with `python -m`
     try:
-        import compass_brca.pipeline_config as cfg
+        import compass_brca.utils.pipeline_config as cfg
     except ImportError:
         # A fallback for finding the config if run from a different context, not ideal but robust.
         import sys
         sys.path.append(str(Path(__file__).parent.parent))
-        import compass_brca.pipeline_config as cfg
+        import compass_brca.utils.pipeline_config as cfg
     main()

@@ -2,7 +2,7 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import NearestNeighbors
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 def main():
     print("--- Attempting to Create Balanced Cohorts using Propensity Score Matching (PSM) ---")

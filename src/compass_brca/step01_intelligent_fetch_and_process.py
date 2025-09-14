@@ -15,7 +15,7 @@ from rich.progress import Progress, BarColumn, DownloadColumn, TextColumn, TimeR
 from rich.live import Live
 
 try:
-    from compass_brca.pipeline_config import MANIFESTS_DIR, RAW_DATA_DIR, MASTER_MANIFEST_FINAL, QUARANTINE_DIR, CHUNKED_DIR
+    from compass_brca.utils.pipeline_config import MANIFESTS_DIR, RAW_DATA_DIR, MASTER_MANIFEST_FINAL, QUARANTINE_DIR, CHUNKED_DIR
 except ImportError:
     PROJECT_ROOT = Path(__file__).resolve().parents[1]
     MANIFESTS_DIR, RAW_DATA_DIR, MASTER_MANIFEST_FINAL, QUARANTINE_DIR, CHUNKED_DIR = \

@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 from rich.console import Console
 from rich.panel import Panel
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 console = Console()# run_pipeline.py
 # V4.0: A more powerful orchestrator. It can now pass custom command-line
@@ -20,7 +20,7 @@ console = Console()# run_pipeline.py
 import subprocess, argparse, logging, time
 from rich.console import Console
 from rich.panel import Panel
-import compass_brca.pipeline_config as cfg
+import compass_brca.utils.pipeline_config as cfg
 
 console = Console()
 

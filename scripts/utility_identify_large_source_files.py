@@ -14,7 +14,7 @@ import pandas as pd
 # --- Configuration ---
 try:
     sys.path.append(str(Path(__file__).resolve().parents[1]))
-    from compass_brca.pipeline_config import RAW_DATA_DIR
+    from compass_brca.utils.pipeline_config import RAW_DATA_DIR
 except ImportError:
     print("Could not import from pipeline_config.py, using script defaults.")
     RAW_DATA_DIR = Path("01_data_raw")

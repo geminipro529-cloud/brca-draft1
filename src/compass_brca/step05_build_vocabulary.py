@@ -7,7 +7,7 @@ from rich.console import Console
 from rich.panel import Panel
 
 try:
-    from compass_brca.pipeline_config import PRIMARY_DATA_DIR, MASTER_VOCABULARY_PATH
+    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR, MASTER_VOCABULARY_PATH
 except ImportError:
     # ... (error handling is the same)
     sys.exit(1)
