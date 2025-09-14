@@ -2,15 +2,18 @@
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import compass_brca.utils.pipeline_config as cfg
-from rich.progress import tracks
+from compass_brca.utils import pipeline_config as cfg
+from rich.progress import track
 
 def main():
-    feature_files = list(cfg.FINAL_FEATURES_DIR.glob("*.parquet"))
+    # Define CONSOLIDATED_MISSINGNESS_REPORT locally
+    CONSOLIDATED_MISSINGNESS_REPORT = cfg.REPORTS_DIR / "consolidated_missingness_report.csv"
+
+    feature_files = list(cfg.FEATURES_FINAL_DIR.glob("*.parquet"))
     if not feature_files:
         print("No final feature files found to analyze for missingness.")
-        cfg.CONSOLIDATED_MISSINGNESS_REPORT.parent.mkdir(parents=True, exist_ok=True)
-        pd.DataFrame(columns=['variable', 'missing_percentage', 'source_file']).to_csv(cfg.CONSOLIDATED_MISSINGNESS_REPORT, index=False)
+        CONSOLIDATED_MISSINGNESS_REPORT.parent.mkdir(parents=True, exist_ok=True)
+        pd.DataFrame(columns=['variable', 'missing_percentage', 'source_file']).to_csv(CONSOLIDATED_MISSINGNESS_REPORT, index=False)
         return
 
     output_dir = cfg.REPORTS_DIR / "missingness_plots"
@@ -38,12 +41,12 @@ def main():
 
     if not all_stats:
         print("No data processed for missingness report.")
-        pd.DataFrame(columns=['variable', 'missing_percentage', 'source_file']).to_csv(cfg.CONSOLIDATED_MISSINGNESS_REPORT, index=False)
+        pd.DataFrame(columns=['variable', 'missing_percentage', 'source_file']).to_csv(CONSOLIDATED_MISSINGNESS_REPORT, index=False)
         return
 
     consolidated_df = pd.concat(all_stats).sort_values(by='missing_percentage', ascending=False)
-    consolidated_df.to_csv(cfg.CONSOLIDATED_MISSINGNESS_REPORT, index=False)
-    print(f"Missingness analysis complete. Report saved to {cfg.CONSOLIDATED_MISSINGNESS_REPORT}")
+    consolidated_df.to_csv(CONSOLIDATED_MISSINGNESS_REPORT, index=False)
+    print(f"Missingness analysis complete. Report saved to {CONSOLIDATED_MISSINGNESS_REPORT}")
 
 if __name__ == "__main__":
     main()

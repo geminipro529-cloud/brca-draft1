@@ -1,24 +1,21 @@
 # src/compass_brca/__main__.py
-# DEFINITIVE VERSION
-# This is the single, master orchestrator for the COMPASS-BRCA pipeline.
-# It manages the execution of all data processing steps, handles checkpointing
-# to allow for resumability, and provides centralized logging.
+# The master orchestrator for the COMPASS-BRCA pipeline.
+# This script manages the execution of all data processing steps,
+# handles checkpointing to allow for resumability, and provides centralized logging.
 
 import subprocess
 import argparse
 import logging
 import time
 import sys
-import shutil
 from pathlib import Path
 from rich.console import Console
 from rich.panel import Panel
 
 # Use a try-except block for robustness, in case the package isn't installed correctly.
 try:
-    from compass_brca.utils.pipeline_config import (
+    from src.compass_brca.pipeline_config import (
         LOGS_DIR,
-        PROJECT_ROOT,
         RAW_DATA_DIR,
         INTERIM_DATA_DIR,
         PRIMARY_DATA_DIR,
@@ -29,6 +26,7 @@ try:
         MASTER_CROSSWALK_FILENAME,
         MASTER_VOCABULARY_FILENAME,
     )
+    # A simple way to get all defined directory paths for setup
     from compass_brca.utils import project_blueprint
     ALL_DIRS = project_blueprint.ALL_DIRS
 except ImportError:
@@ -39,56 +37,45 @@ except ImportError:
 console = Console()
 
 # --- Pipeline Definition with Arguments ---
-# This dictionary is the single source of truth for all pipeline steps.
-# It defines the module to run, the checkpoint file that marks completion,
-# and any special cleanup actions.
+# This dictionary defines each step, its corresponding script module, and the
+# checkpoint file that signifies its successful completion.
 PIPELINE_STEPS = {
     "fetch": {"module": "step01_intelligent_fetch_and_process", "checkpoint": RAW_DATA_DIR / ".fetch_complete"},
     "audit": {"module": "step02_audit_raw_data", "checkpoint": RAW_DATA_DIR / ".audit_complete"},
     "clean": {"module": "step03_clean_and_normalize", "checkpoint": INTERIM_DATA_DIR / ".clean_complete"},
-    "crosswalk": {
-        "module": "step04_build_crosswalk_21",
-        "checkpoint": PRIMARY_DATA_DIR / MASTER_CROSSWALK_FILENAME,
-        "cleanup": [PRIMARY_DATA_DIR] # Deletes the primary data dir before running
-    },
+    "crosswalk": {"module": "step04_build_crosswalk_21", "checkpoint": PRIMARY_DATA_DIR / MASTER_CROSSWALK_FILENAME},
     "vocabulary": {"module": "step05_build_vocabulary", "checkpoint": PRIMARY_DATA_DIR / MASTER_VOCABULARY_FILENAME},
     "filter_by_vocab": {"module": "step05a_filter_by_vocabulary", "checkpoint": FILTERED_DATA_DIR / ".filter_complete"},
-    "annotate": {"module": "step06_annotate_data", "checkpoint": FEATURES_FINAL_DIR / ".annotate_complete"},
+    "annotate": {
+        "module": "step06_annotate_data",
+        "checkpoint": FEATURES_FINAL_DIR / ".annotate_complete",
+        "args": ["--input-dir", str(FILTERED_DATA_DIR)]
+    },
     "missingness": {"module": "step07_analyze_missingness", "checkpoint": REPORTS_DIR / "consolidated_missingness_report.csv"},
     "reconcile": {"module": "step08_reconcile_manifests", "checkpoint": PRIMARY_DATA_DIR / "manual_download_list.txt"},
     "balance_cohorts": {"module": "step09_create_balanced_cohorts", "checkpoint": FEATURES_BALANCED_DIR / ".balance_complete"},
     "report": {"module": "analysis.thesis_readiness_report", "checkpoint": REPORTS_DIR / ".report_complete"},
 }
 
-def setup_project_structure(logger: logging.Logger):
+def setup_project_structure(logger):
     """Ensures all necessary directories from the config exist."""
     logger.info("Verifying project directory structure...")
     for d in ALL_DIRS:
         try:
             d.mkdir(parents=True, exist_ok=True)
         except OSError as e:
-            logger.critical(f"Could not create directory {d}: {e}")
+            logger.error(f"Could not create directory {d}: {e}")
             console.print(f"[bold red]Error:[/bold red] Failed to create directory {d}. Please check permissions.")
             sys.exit(1)
     logger.info("Project structure verified.")
 
-def perform_cleanup(step_name: str, config: dict, logger: logging.Logger):
-    """Performs cleanup actions defined for a step."""
-    if "cleanup" in config:
-        for path_to_delete in config["cleanup"]:
-            if path_to_delete.exists():
-                logger.warning(f"CLEANUP for step '{step_name}': Removing '{path_to_delete}'")
-                if path_to_delete.is_dir():
-                    shutil.rmtree(path_to_delete)
-                else:
-                    path_to_delete.unlink()
-
 def run_step(step_name: str, config: dict, logger: logging.Logger) -> bool:
-    """Executes a single pipeline step, handling checkpoints, cleanup, and logging."""
+    """
+    Executes a single step of the pipeline using `python -m`, checking for checkpoints.
+    Returns True on success, False on failure.
+    """
     checkpoint = config["checkpoint"]
     console.print(Panel(f"Starting Step: [bold cyan]{step_name}[/]", expand=False, border_style="blue"))
-
-    perform_cleanup(step_name, config, logger)
 
     if checkpoint.exists():
         logger.info(f"CHECKPOINT FOUND for step '{step_name}' at: {checkpoint}. Skipping.")
@@ -96,9 +83,12 @@ def run_step(step_name: str, config: dict, logger: logging.Logger) -> bool:
         return True
 
     command = [sys.executable, "-m", f"compass_brca.{config['module']}"]
+    if "args" in config:
+        command.extend(config["args"])
 
     logger.info(f"Running command: {' '.join(map(str, command))}")
     try:
+        # Use Popen to stream output in real-time, which is better for user feedback
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True, encoding='utf-8', errors='replace')
         for line in iter(process.stdout.readline, ''):
             logger.info(line.strip())
@@ -106,6 +96,7 @@ def run_step(step_name: str, config: dict, logger: logging.Logger) -> bool:
         if process.returncode != 0:
             raise subprocess.CalledProcessError(process.returncode, command)
 
+        # For steps that don't create their checkpoint file, we create a marker.
         if not checkpoint.exists():
             checkpoint.parent.mkdir(parents=True, exist_ok=True)
             checkpoint.touch()
@@ -114,47 +105,49 @@ def run_step(step_name: str, config: dict, logger: logging.Logger) -> bool:
         console.print(f"[bold green]Step '{step_name}' completed successfully.[/]")
         return True
     except (subprocess.CalledProcessError, FileNotFoundError) as e:
+        # Check if e has 'cmd' attribute before trying to access it
         cmd_str = ' '.join(map(str, e.cmd)) if hasattr(e, 'cmd') else 'N/A'
-        logger.critical(f"ERROR in step {step_name}. Command: '{cmd_str}'. Error: {e}")
+        logger.error(f"ERROR in step {step_name}. Command: '{cmd_str}'. Error: {e}")
         console.print(f"[bold red]ERROR[/] in step [bold]{step_name}[/]. See log for details.")
         return False
 
 def main():
     parser = argparse.ArgumentParser(description="COMPASS-BRCA Pipeline Orchestrator")
-    parser.add_argument("--from-step", dest='start_step', choices=PIPELINE_STEPS.keys(), help="Start execution from a specific step.")
+    parser.add_argument("--from", dest='start_step', choices=PIPELINE_STEPS.keys(), help="Start execution from a specific step.")
     parser.add_argument("--steps", nargs='+', choices=PIPELINE_STEPS.keys(), help="Run only specific steps.")
     args = parser.parse_args()
 
     LOGS_DIR.mkdir(exist_ok=True)
     timestamp = time.strftime("%Y%m%d-%H%M%S")
     log_file = LOGS_DIR / f"run_pipeline_{timestamp}.log"
-    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(module)s - %(message)s',
+    logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
                         handlers=[logging.FileHandler(log_file), logging.StreamHandler(sys.stdout)])
     logger = logging.getLogger()
 
     setup_project_structure(logger)
 
     steps_to_run = list(PIPELINE_STEPS.keys())
-    if args.steps:
-        invalid_steps = [s for s in args.steps if s not in PIPELINE_STEPS]
-        if invalid_steps:
-            logger.critical(f"Invalid step(s) specified: {', '.join(invalid_steps)}")
-            sys.exit(1)
-        steps_to_run = args.steps
-    elif args.start_step:
+    if args.start_step:
         try:
             start_index = steps_to_run.index(args.start_step)
             steps_to_run = steps_to_run[start_index:]
         except ValueError:
-            logger.critical(f"Start step '{args.start_step}' not found in the pipeline.")
+            console.print(f"[bold red]Error:[/bold red] Step '{args.start_step}' not found in the pipeline.")
             sys.exit(1)
+    elif args.steps:
+        # Validate that all specified steps exist
+        invalid_steps = [s for s in args.steps if s not in PIPELINE_STEPS]
+        if invalid_steps:
+            console.print(f"[bold red]Error:[/bold red] Invalid step(s): {', '.join(invalid_steps)}")
+            sys.exit(1)
+        steps_to_run = args.steps
 
     console.print(Panel("[bold magenta]COMPASS-BRCA Pipeline Initialized[/]", title="Welcome", subtitle=f"Logging to {log_file}"))
     start_time = time.time()
 
     for step_name in steps_to_run:
         if not run_step(step_name, PIPELINE_STEPS[step_name], logger):
-            console.print(Panel(f"[bold red]Pipeline HALTED due to error in step '{step_name}'.[/]", expand=False))
+            console.print(f"[bold red]Pipeline halted due to error in step '{step_name}'.[/]")
             break
 
     end_time = time.time()
@@ -162,3 +155,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

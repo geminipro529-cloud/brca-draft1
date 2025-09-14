@@ -16,7 +16,7 @@ import sys
 try:
     sys.path.append(str(Path(__file__).resolve().parents[1]))
     # This revamped script now needs to know about the CHUNKED_DIR
-    from compass_brca.utils.pipeline_config import RAW_DATA_DIR, CHUNKED_DIR 
+    from compass_brca.utils.pipeline_config import RAW_DATA_DIR, CHUNKED_DIR
 except ImportError:
     print("Could not import from pipeline_config.py, using script defaults.")
     RAW_DATA_DIR = Path("01_data_raw")

@@ -2,7 +2,7 @@
 import pandas as pd
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import NearestNeighbors
-import compass_brca.utils.pipeline_config as cfg
+from compass_brca.utils import pipeline_config as cfg
 
 def main():
     print("--- Attempting to Create Balanced Cohorts using Propensity Score Matching (PSM) ---")
@@ -21,7 +21,7 @@ def main():
 
     if 'is_nano' not in df.columns or df['is_nano'].nunique() < 2:
         print("Could not find two distinct cohorts to balance. Skipping.")
-        (cfg.BALANCED_FEATURES_DIR / ".balance_complete").touch()
+        (cfg.FEATURES_BALANCED_DIR / ".balance_complete").touch()
         return
 
     model = LogisticRegression().fit(df[['age']], df['is_nano'])
@@ -41,8 +41,8 @@ def main():
     # filter them using the `matched_control_ids` and `treatment.index`,
     # and save the smaller, balanced dataframes to BALANCED_FEATURES_DIR.
     
-    (cfg.BALANCED_FEATURES_DIR / ".balance_complete").touch()
-    print(f"Balancing logic complete. Balanced data would be in: {cfg.BALANCED_FEATURES_DIR}")
+    (cfg.FEATURES_BALANCED_DIR / ".balance_complete").touch()
+    print(f"Balancing logic complete. Balanced data would be in: {cfg.FEATURES_BALANCED_DIR}")
 
 if __name__ == "__main__":
     main()

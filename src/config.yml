@@ -1,0 +1,12 @@
+
+# config.yml
+# =============================================================================
+# COMPASS-BRCA: GLOBAL PIPELINE INSTRUCTIONS
+# =============================================================================
+dask_cluster:
+  n_workers: 2
+  memory_limit: "6GB"
+
+step04_build_crosswalk:
+  batch_size: 500
+  column_chunk_size: 500

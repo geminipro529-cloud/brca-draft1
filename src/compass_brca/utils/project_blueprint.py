@@ -13,7 +13,7 @@ console = Console()
 
 # This import will now succeed because pipeline_config.py is a sibling module.
 try:
-    from compass_brca.utils.pipeline_config import (
+    from .pipeline_config import (
         PROJECT_ROOT, MANIFESTS_DIR, RAW_DATA_DIR, INTERIM_DATA_DIR, 
         FILTERED_DATA_DIR, QUARANTINE_DIR, CHUNKED_DIR, CULPRIT_QUARANTARANTINE_DIR, 
         PRIMARY_DATA_DIR, FEATURES_FINAL_DIR, FEATURES_BALANCED_DIR, 

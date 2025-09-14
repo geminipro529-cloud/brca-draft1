@@ -6,7 +6,7 @@ import pandas as pd
 import argparse # <-- Added
 from pathlib import Path # <-- Added
 from rich.progress import track
-import compass_brca.utils.pipeline_config as cfg
+from compass_brca.utils import pipeline_config as cfg
 
 def main():
     # --- NEW: Argument Parsing ---
@@ -17,17 +17,20 @@ def main():
     input_dir = Path(args.input_dir)
     # -----------------------------
 
-    if not cfg.VOCABULARY_FILE.exists(): print(f"Vocabulary file not found."); return
-    vocab_df = pd.read_parquet(cfg.VOCABULARY_FILE)
-    if vocab_df.empty: print("Vocabulary is empty. Skipping annotation."); (cfg.FINAL_FEATURES_DIR / ".annotate_complete").touch(); return
+    VOCABULARY_FILE = cfg.PRIMARY_DATA_DIR / cfg.MASTER_VOCABULARY_FILENAME
+    if not VOCABULARY_FILE.exists(): print(f"Vocabulary file not found."); return
+    vocab_df = pd.read_parquet(VOCABULARY_FILE)
+    if vocab_df.empty: print("Vocabulary is empty. Skipping annotation."); (cfg.FEATURES_FINAL_DIR / ".annotate_complete").touch(); return
 
-    lookup_map = {cat: pd.Series(g.standard_name.values, index=g.alias).to_dict() for cat, g in vocab_df.groupby('category')}
+    # The new vocab has no category, so we create a simple lookup map
+    # In a real scenario, you'd need a more sophisticated vocabulary with categories
+    lookup_map = {'term': pd.Series(vocab_df.term.values, index=vocab_df.term).to_dict()}
     
     # Use the new input_dir variable
     files_to_process = list(input_dir.glob("*.parquet"))
-    if not files_to_process: print(f"No files found in {input_dir} to annotate."); (cfg.FINAL_FEATURES_DIR / ".annotate_complete").touch(); return
+    if not files_to_process: print(f"No files found in {input_dir} to annotate."); (cfg.FEATURES_FINAL_DIR / ".annotate_complete").touch(); return
     
-    cfg.FINAL_FEATURES_DIR.mkdir(exist_ok=True)
+    cfg.FEATURES_FINAL_DIR.mkdir(exist_ok=True)
     for file in track(files_to_process, description=f"Annotating files from {input_dir.name}..."):
         try:
             df = pd.read_parquet(file)
@@ -38,10 +41,10 @@ def main():
                     if col in candidates.get(category, []):
                         df[f"{col}_standardized"] = df[col].map(mapping)
             
-            df.to_parquet(cfg.FINAL_FEATURES_DIR / file.name, index=False)
+            df.to_parquet(cfg.FEATURES_FINAL_DIR / file.name, index=False)
         except Exception as e: print(f"\\n[yellow]Warning:[/yellow] Error annotating {file.name}: {e}")
 
-    (cfg.FINAL_FEATURES_DIR / ".annotate_complete").touch()
+    (cfg.FEATURES_FINAL_DIR / ".annotate_complete").touch()
 
 if __name__ == "__main__":
     main()

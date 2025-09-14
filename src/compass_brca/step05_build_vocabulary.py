@@ -7,13 +7,13 @@ from rich.console import Console
 from rich.panel import Panel
 
 try:
-    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR, MASTER_VOCABULARY_PATH
+    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR, MASTER_CROSSWALK_FILENAME, MASTER_VOCABULARY_FILENAME
 except ImportError:
     # ... (error handling is the same)
     sys.exit(1)
     
 # --- V1.1 FIX: Point to the dataset directory, not a single file ---
-CROSSWALK_DATASET_DIR = PRIMARY_DATA_DIR / "master_crosswalk.dataset"
+CROSSWALK_PATH = PRIMARY_DATA_DIR / MASTER_CROSSWALK_FILENAME
 
 VOCABULARY_SOURCE_COLUMNS = ["identifier_value"]
 EXCLUSION_LIST = ["na", "NA", "nan", "NaN", "null", "NULL", ""]
@@ -22,18 +22,17 @@ def main():
     console = Console()
     console.print(Panel("[bold cyan]Step 05: Build Master Vocabulary (V1.1)[/]", expand=False))
 
-    if not CROSSWALK_DATASET_DIR.exists():
+    if not CROSSWALK_PATH.exists():
         console.print(f"[bold red]Error:[/bold red] Crosswalk dataset directory not found at:")
-        console.print(f"[cyan]{CROSSWALK_DATASET_DIR}[/]")
+        console.print(f"[cyan]{CROSSWALK_PATH}[/]")
         sys.exit(1)
 
     # --- V1.1 FIX: Use a glob pattern to read all Parquet files in the directory ---
-    crosswalk_path_glob = str(CROSSWALK_DATASET_DIR / "*.parquet")
-    console.print(f"Reading crosswalk dataset from: [cyan]{crosswalk_path_glob}[/]")
+    console.print(f"Reading crosswalk dataset from: [cyan]{CROSSWALK_PATH}[/]")
     
     try:
         # Polars can read a multi-file dataset directly by passing a glob pattern.
-        crosswalk_lazy_df = pl.scan_parquet(crosswalk_path_glob)
+        crosswalk_lazy_df = pl.scan_parquet(CROSSWALK_PATH)
 
         console.print(f"Extracting unique terms from column(s): [yellow]{', '.join(VOCABULARY_SOURCE_COLUMNS)}[/]")
         
@@ -47,6 +46,7 @@ def main():
         )
         vocabulary_df = vocabulary_df.rename({"identifier_value": "term"})
 
+        MASTER_VOCABULARY_PATH = PRIMARY_DATA_DIR / MASTER_VOCABULARY_FILENAME
         PRIMARY_DATA_DIR.mkdir(parents=True, exist_ok=True)
         vocabulary_df.write_parquet(MASTER_VOCABULARY_PATH)
 

@@ -15,7 +15,7 @@ from rich.progress import Progress, BarColumn, DownloadColumn, TextColumn, TimeR
 from rich.live import Live
 
 try:
-    from compass_brca.utils.pipeline_config import MANIFESTS_DIR, RAW_DATA_DIR, MASTER_MANIFEST_FINAL, QUARANTINE_DIR, CHUNKED_DIR
+    from compass_brca.utils.pipeline_config import MANIFESTS_DIR, RAW_DATA_DIR, QUARANTINE_DIR, CHUNKED_DIR
 except ImportError:
     PROJECT_ROOT = Path(__file__).resolve().parents[1]
     MANIFESTS_DIR, RAW_DATA_DIR, MASTER_MANIFEST_FINAL, QUARANTINE_DIR, CHUNKED_DIR = \
@@ -101,6 +101,8 @@ async def process_manifest_entry(client: httpx.AsyncClient, entry: dict, progres
 
 async def main(progress_bar: Progress | None = None) -> int:
     console = Console(); is_standalone = progress_bar is None
+    # Define MASTER_MANIFEST_FINAL locally as it's not in the global config
+    MASTER_MANIFEST_FINAL = "master_manifest_FINAL.csv"
     RAW_DATA_DIR.mkdir(exist_ok=True); QUARANTINE_DIR.mkdir(exist_ok=True); CHUNKED_DIR.mkdir(exist_ok=True)
     manifest_path = MANIFESTS_DIR / MASTER_MANIFEST_FINAL
     if not manifest_path.exists(): console.print(f"[bold red]CRITICAL: Manifest file not found.[/bold red]"); return 1

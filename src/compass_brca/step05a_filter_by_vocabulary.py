@@ -11,7 +11,7 @@ import logging
 from rich.console import Console
 from rich.panel import Panel
 from rich.progress import Progress, BarColumn, TextColumn, TimeElapsedColumn, MofNCompleteColumn, SpinnerColumn
-import compass_brca.utils.pipeline_config as cfg
+from compass_brca.utils import pipeline_config as cfg
 
 # --- Setup ---
 console = Console()
@@ -71,17 +71,18 @@ def main():
     console.print(Panel(f"Filtering interim data using master vocabulary.\n  -> Output will be saved to: `{FILTERED_DATA_DIR}`", title="[bold cyan]Domain-Specific Noise Reduction[/bold cyan]"))
 
     # --- Load Inputs ---
-    if not cfg.VOCABULARY_FILE.exists():
-        console.print(f"[bold red]Error:[/bold red] Master vocabulary not found at `{cfg.VOCABULARY_FILE}`. Run step05 first."); return
+    VOCABULARY_FILE = cfg.PRIMARY_DATA_DIR / cfg.MASTER_VOCABULARY_FILENAME
+    if not VOCABULARY_FILE.exists():
+        console.print(f"[bold red]Error:[/bold red] Master vocabulary not found at `{VOCABULARY_FILE}`. Run step05 first."); return
     
     interim_files = list(cfg.INTERIM_DATA_DIR.glob("*.parquet"))
     if not interim_files:
-        console.print("[yellow]No interim files found to filter.[/yellow]"); return
+        console.print("[yellow]No interim files found to filter.[/yellow]"); (FILTERED_DATA_DIR / ".filter_complete").touch(); return
 
     # Load the vocabulary and convert to a set for extremely fast lookups
-    vocab_df = pd.read_parquet(cfg.VOCABULARY_FILE)
-    # We use the 'alias' as it represents the original terms in the data
-    vocab_set = set(vocab_df['alias'].str.strip().unique())
+    vocab_df = pd.read_parquet(VOCABULARY_FILE)
+    # The vocabulary file just has a 'term' column
+    vocab_set = set(vocab_df['term'].str.strip().unique())
     console.print(f"Loaded {len(vocab_set)} unique terms into the filter vocabulary.")
 
     total_original_rows = 0

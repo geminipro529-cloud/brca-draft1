@@ -7,8 +7,27 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CONFIG_FILE_PATH = PROJECT_ROOT / "config.yml"
 
+# --- V2: Idiot-Proofing ---
+# If config.yml doesn't exist, create a default one.
 if not CONFIG_FILE_PATH.exists():
-    raise FileNotFoundError("CRITICAL: config.yml not found in project root!")
+    print("--- CONFIGURATION WIZARD ---")
+    print(f"INFO: 'config.yml' not found. Creating a default one at: {CONFIG_FILE_PATH}")
+    default_config = """
+# config.yml
+# =============================================================================
+# COMPASS-BRCA: GLOBAL PIPELINE INSTRUCTIONS
+# =============================================================================
+dask_cluster:
+  n_workers: 2
+  memory_limit: "6GB"
+
+step04_build_crosswalk:
+  batch_size: 500
+  column_chunk_size: 500
+"""
+    with open(CONFIG_FILE_PATH, 'w') as f:
+        f.write(default_config)
+    print("INFO: Default 'config.yml' created successfully. You can edit this file to change pipeline parameters.")
 
 with open(CONFIG_FILE_PATH, 'r') as f:
     config = yaml.safe_load(f)

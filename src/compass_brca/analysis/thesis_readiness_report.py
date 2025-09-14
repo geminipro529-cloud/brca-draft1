@@ -20,13 +20,13 @@ from datetime import datetime
 console = Console()
 
 try:
-    from compass_brca.pipeline_config import PRIMARY_DATA_DIR, REPORTS_DIR
+    from compass_brca.utils.pipeline_config import PRIMARY_DATA_DIR, REPORTS_DIR, MASTER_CROSSWALK_FILENAME
 except ImportError as e:
     console.print(f"[bold red]Fatal Error: Could not import pipeline_config.py.[/]")
     sys.exit(1)
 
 # --- Define Paths ---
-CROSSWALK_DATASET_DIR = PRIMARY_DATA_DIR / "master_crosswalk.dataset"
+CROSSWALK_PATH = PRIMARY_DATA_DIR / MASTER_CROSSWALK_FILENAME
 VOCABULARY_DIR = PRIMARY_DATA_DIR / "vocabularies"
 
 # --- Analysis Parameters ---
@@ -43,8 +43,9 @@ def main():
     console.rule("[bold magenta]Analysis: Thesis Readiness Report[/bold magenta]")
     
     # --- Pre-flight Checks ---
-    if not CROSSWALK_DATASET_DIR.exists() or not VOCABULARY_DIR.exists():
+    if not CROSSWALK_PATH.exists() or not VOCABULARY_DIR.exists():
         console.print("[bold red]Error:[/bold red] Required data directories not found in '03_data_primary'.")
+        console.print(f"Looked for '{CROSSWALK_PATH}' and '{VOCABULARY_DIR}'.")
         console.print("Please run the full processing pipeline (steps 04 and 05) first.")
         sys.exit(1)
 
@@ -56,7 +57,7 @@ def main():
 
     # --- Load Data ---
     console.print("Loading crosswalk data...")
-    crosswalk_df = pl.read_parquet(str(CROSSWALK_DATASET_DIR / "*.parquet"))
+    crosswalk_df = pl.read_parquet(CROSSWALK_PATH)
     
     vocab_data = {}
     for domain, filename in KEY_VOCABULARIES.items():
@@ -120,6 +121,3 @@ def main():
         f.write("\n".join(report_lines))
         
     console.print(Panel(f"[bold green]Thesis Readiness Report complete![/]\nFull report saved to: '[cyan]{report_path}[/]'", expand=False))
-
-if __name__ == "__main__":
-    main()
