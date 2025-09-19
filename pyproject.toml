@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "compass_brca"
+version = "1.0.0"
+authors = [ { name="Compass BRCA Team", email="user@example.com" } ]
+description = "COMPASS-BRCA Nanoparticle Analysis Pipeline"
+requires-python = ">=3.9"
+dependencies = [
+    "pandas", "pyarrow", "dask[distributed]", "polars", "rich",
+    "scikit-learn", "lightgbm", "rarfile", "py7zr", "openpyxl",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
